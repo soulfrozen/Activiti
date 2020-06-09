@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xmlns:activiti="http://activiti.org/bpmn"
+        targetNamespace="Examples">
+
+    <process id="oneTaskProcess1" name="The One Task Process">
+        <startEvent id="theStart" />
+        <sequenceFlow id="flow1" sourceRef="theStart" targetRef="theTask" />
+        <serviceTask id="theTask" name="my task" implementation="test" >
+            <extensionElements>
+                <activiti:executionListener event="start" class="com.hacker.activiti.rb.listener.HackerExecutionListener"/>
+                <activiti:executionListener event="end" class="com.hacker.activiti.rb.listener.HackerExecutionListener"/>
+                <activiti:taskListener event="create" class="com.hacker.activiti.rb.listener.HackerTaskListener"/>
+            </extensionElements>
+        </serviceTask>
+        <sequenceFlow id="flow2" sourceRef="theTask" targetRef="theEnd" />
+        <endEvent id="theEnd" />
+    </process>
+
+</definitions>

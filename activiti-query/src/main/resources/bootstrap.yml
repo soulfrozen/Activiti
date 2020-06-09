@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: activiti-query
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  #      config:
+  #        server-addr: 127.0.0.1:8848
+  #        file-extension: yaml
+  #        refreshable-dataids: pay-settle.yaml
+    stream:
+      bindings:
+        queryConsumer:
+          destination: engineEvents
+          group: query
+          contentType: application/json
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/activiti_query
+    username: root
+    password: root
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: ACTIVITI_USER,ACTIVITI_ADMIN,ADMIN,USER,ACT_USER,ACT_ADMIN
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 0
+
+

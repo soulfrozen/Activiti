@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: activiti-connector
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    #      config:
+    #        server-addr: 127.0.0.1:8848
+    #        file-extension: yaml
+    #        refreshable-dataids: pay-settle.yaml
+    stream:
+      bindings:
+#        auditProducer:
+#          destination: ${ACT_RB_AUDIT_PRODUCER_DEST:engineEvents}
+#          contentType: ${ACT_RB_AUDIT_PRODUCER_CONTENT_TYPE:application/json}
+#        signalProducer:
+#          destination: ${ACT_RB_SIGNAL_PRODUCER_DEST:signalEvent}
+#          contentType: ${ACT_RB_SIGNAL_PRODUCER_CONTENT_TYPE:application/json}
+        test:
+          destination: ${ACT_RB_SIGNAL_CONSUMER_DEST:test}
+          group: ${ACT_RB_SIGNAL_CONSUMER_GROUP:activiti-connector}
+          contentType: ${ACT_RB_SIGNAL_CONSUMER_CONTENT_TYPE:application/json}
+
+
+
+
+
+#
+#logging:
+#  level:
+#    org: debug
+#    com: debug
+activiti:
+  cloud:
+    application:
+      name: activiti-rb
+      version: 1.0
+    service:
+      type: rb
+      version: 1.0
+
+
+server:
+  port: 8091

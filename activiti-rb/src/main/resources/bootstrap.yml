@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: activiti-rb
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  #      config:
+#        server-addr: 127.0.0.1:8848
+#        file-extension: yaml
+#        refreshable-dataids: pay-settle.yaml
+    stream:
+      bindings:
+        auditProducer:
+          destination: ${ACT_RB_AUDIT_PRODUCER_DEST:engineEvents}
+          contentType: ${ACT_RB_AUDIT_PRODUCER_CONTENT_TYPE:application/json}
+        signalProducer:
+          destination: ${ACT_RB_SIGNAL_PRODUCER_DEST:signalEvent}
+          contentType: ${ACT_RB_SIGNAL_PRODUCER_CONTENT_TYPE:application/json}
+        signalConsumer:
+          destination: ${ACT_RB_SIGNAL_CONSUMER_DEST:signalEvent}
+          group: ${ACT_RB_SIGNAL_CONSUMER_GROUP:activiti-rb}
+          contentType: ${ACT_RB_SIGNAL_CONSUMER_CONTENT_TYPE:application/json}
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/activiti_rb
+    username: root
+    password: root
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: ACTIVITI_USER,ACTIVITI_ADMIN,ADMIN,USER,ACT_USER,ACT_ADMIN
+
+  activiti:
+    history-level: full
+
+server:
+  port: 50412
+
+
+#
+#logging:
+#  level:
+#    org: debug
+#    com: debug
+activiti:
+  cloud:
+    application:
+      name: activiti-rb
+      version: 1.0
+    service:
+      type: rb
+      version: 1.0
+

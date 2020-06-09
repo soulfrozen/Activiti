@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.hacker.activiti</groupId>
+    <artifactId>activiti</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>activiti</name>
+    <packaging>pom</packaging>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <hacker.common.version>1.0.0-SNAPSHOT</hacker.common.version>
+        <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+        <spring-platform.version>Cairo-SR8</spring-platform.version>
+        <activiti-cloud-dependencies.version>7.0.0.SR1</activiti-cloud-dependencies.version>
+    </properties>
+
+    <modules>
+        <module>activiti-audit</module>
+        <module>activiti-model</module>
+        <module>activiti-connector</module>
+        <module>activiti-query</module>
+        <module>activiti-rb</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.hacker</groupId>
+                <artifactId>hacker-common</artifactId>
+                <version>${hacker.common.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>io.spring.platform</groupId>-->
+            <!--                <artifactId>platform-bom</artifactId>-->
+            <!--                <version>${spring-platform.version}</version>-->
+            <!--                <type>pom</type>-->
+            <!--                <scope>import</scope>-->
+            <!--            </dependency>-->
+            <dependency>
+                <groupId>org.activiti.cloud.dependencies</groupId>
+                <artifactId>activiti-cloud-dependencies</artifactId>
+                <version>${activiti-cloud-dependencies.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.activiti.cloud.modeling</groupId>
+                <artifactId>activiti-cloud-org-dependencies</artifactId>
+                <version>${activiti-cloud-dependencies.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>nexus releases repository</name>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>snapshots repository</name>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+            <!--            <layout>default</layout>-->
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <repositories>
+
+<!--        <repository>-->
+<!--            <id>nexus-releases</id>-->
+<!--            <name>nexus releases repository</name>-->
+<!--            <url>http://localhost:8081/repository/maven-releases/</url>-->
+<!--        </repository>-->
+
+<!--        <repository>-->
+<!--            <id>snapshots</id>-->
+<!--            <name>snapshots</name>-->
+<!--            <url>http://localhost:8081/repository/maven-snapshots/</url>-->
+<!--        </repository>-->
+
+        <!--阿里云私服-->
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+        <!--gitee 私服-->
+        <repository>
+            <id>gitee.wang</id>
+            <name>gitee.wang</name>
+            <url>http://nexus.gitee.wang/repository/maven-releases/</url>
+        </repository>
+
+
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

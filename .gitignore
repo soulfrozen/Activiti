@@ -1,0 +1,6 @@
+# Project exclude paths
+/activiti-audit/target/
+/activiti-connector/target/
+/activiti-model/target/
+/activiti-query/target/
+/activiti-rb/target/
